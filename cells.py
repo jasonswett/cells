@@ -55,19 +55,20 @@ def main():
     for organism in organisms:
         organism.show()
 
-    poison_x = 0
-    poison_y = random.randint(0, cell_screen.height - 1)
-    RED = (255, 0, 0)
+    for i in range(0, 10):
+        poison_x = 0
+        poison_y = random.randint(0, cell_screen.height - 1)
+        RED = (255, 0, 0)
 
-    while True:
-        cell_screen.draw_cell(poison_x, poison_y, RED)
-        cell_screen.draw_cell(poison_x - 1, poison_y, (0, 0, 0))
-        poison_x += 1
-        time.sleep(0.03)
+        while True:
+            cell_screen.draw_cell(poison_x, poison_y, RED)
+            cell_screen.draw_cell(poison_x - 1, poison_y, (0, 0, 0))
+            poison_x += 1
+            time.sleep(0.03)
 
-        pygame.display.update()
+            pygame.display.update()
 
-        if poison_x >= cell_screen.width + 1:
-            break
+            if poison_x >= cell_screen.width + 1:
+                break
 
 main()
