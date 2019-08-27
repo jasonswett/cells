@@ -26,15 +26,19 @@ class Organism:
         self.width = size[0]
         self.height = size[1]
 
-    def show(self):
         BLUE = (0, 0, 255)
         YELLOW = (255, 255, 0)
         color_options = [BLUE, YELLOW]
 
-        for yi in range(0, self.height):
-            for xi in range(0, self.width):
-                color = color_options[random.randint(0, 1)]
-                self.cell_screen.draw_cell(self.x + xi, self.y + yi, color)
+        self.cell_colors = []
+        for i in range(0, self.width * self.height):
+            color = color_options[random.randint(0, 1)]
+            self.cell_colors.append(color)
+
+    def show(self):
+        for y in range(0, self.height):
+            for x in range(0, self.width):
+                self.cell_screen.draw_cell(self.x + x, self.y + y, self.cell_colors[y + (x * y)])
 
 def main():
     pygame.init()
@@ -43,7 +47,7 @@ def main():
     organism_size = 6
     organisms = []
 
-    for x in range(0, 3):
+    for i in range(0, 3):
         organism_x = random.randint(0, cell_screen.width - organism_size)
         organism_y = random.randint(0, cell_screen.height - organism_size)
         organisms.append(Organism(cell_screen, (organism_x, organism_y), (organism_size, organism_size)))
@@ -57,7 +61,7 @@ def main():
 
         cell_screen.draw_cell(poison_x, 0, RED)
         poison_x += 1
-        time.sleep(0.1)
+        time.sleep(0.05)
 
         pygame.display.update()
 
