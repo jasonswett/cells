@@ -15,11 +15,11 @@ class Organism:
 
         self.cells = []
 
-        for i in range(0, self.width * self.height):
-            cell = Cell(color_options[random.randint(0, 1)])
-            self.cells.append(cell)
-
-    def show(self):
         for y in range(0, self.height):
             for x in range(0, self.width):
-                self.cell_screen.draw_cell(self.x + x, self.y + y, self.cells[y + (x * y)].color)
+                cell = Cell(x, y, color_options[random.randint(0, 1)])
+                self.cells.append(cell)
+
+    def show(self):
+        for cell in self.cells:
+            self.cell_screen.draw_cell(self.x + cell.x, self.y + cell.y, cell.color)
