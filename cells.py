@@ -41,10 +41,13 @@ def main():
     cell_screen = CellScreen(screen_width, screen_height)
 
     organism_size = 6
-    organism_x = random.randint(0, screen_width - organism_size)
-    organism_y = random.randint(0, screen_height - organism_size)
-    organism = Organism(cell_screen, (organism_x, organism_y), (organism_size, organism_size))
-    organism.show()
+
+    for x in range(0, 3):
+        organism_x = random.randint(0, screen_width - organism_size)
+        organism_y = random.randint(0, screen_height - organism_size)
+        organism = Organism(cell_screen, (organism_x, organism_y), (organism_size, organism_size))
+        organism.show()
+
     pygame.display.update()
     time.sleep(2)
 
