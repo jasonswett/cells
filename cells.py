@@ -1,14 +1,19 @@
 import pygame, sys, time, random
 from pygame.locals import *
 
+DEFAULT_CELL_WIDTH = 20
+TOTAL_CELL_WIDTH = DEFAULT_CELL_WIDTH + 2
+
 class CellScreen:
     def __init__(self, width, height):
         self.DEFAULT_CELL_WIDTH = 20
-        self.display = pygame.display.set_mode((self.DEFAULT_CELL_WIDTH * width, self.DEFAULT_CELL_WIDTH * height), 0, 32)
+        screen_width = TOTAL_CELL_WIDTH * width
+        screen_height = TOTAL_CELL_WIDTH * height
+        self.display = pygame.display.set_mode((screen_width, screen_height), 0, 32)
 
     def draw_cell(self, x, y, color):
-        x_position = x * self.DEFAULT_CELL_WIDTH + 2 * x
-        y_position = y * self.DEFAULT_CELL_WIDTH + 2 * y
+        x_position = x * TOTAL_CELL_WIDTH
+        y_position = y * TOTAL_CELL_WIDTH
         pygame.draw.rect(self.display, color, (x_position, y_position, self.DEFAULT_CELL_WIDTH, self.DEFAULT_CELL_WIDTH), 0)
 
 class Organism:
@@ -29,7 +34,7 @@ class Organism:
 
 def main():
     pygame.init()
-    cell_screen = CellScreen(40, 20)
+    cell_screen = CellScreen(60, 40)
 
     organism = Organism(cell_screen, 6, 6)
     organism.show()
