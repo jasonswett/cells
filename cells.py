@@ -17,10 +17,12 @@ class CellScreen:
         pygame.draw.rect(self.display, color, (x_position, y_position, self.DEFAULT_CELL_WIDTH, self.DEFAULT_CELL_WIDTH), 0)
 
 class Organism:
-    def __init__(self, cell_screen, width, height):
+    def __init__(self, cell_screen, position, size):
         self.cell_screen = cell_screen
-        self.width = width
-        self.height = height
+        self.x = position[0]
+        self.y = position[1]
+        self.width = size[0]
+        self.height = size[1]
 
     def show(self):
         BLUE = (0, 0, 255)
@@ -30,13 +32,13 @@ class Organism:
         for yi in range(0, self.height):
             for xi in range(0, self.width):
                 color = color_options[random.randint(0, 1)]
-                self.cell_screen.draw_cell(xi, yi, color)
+                self.cell_screen.draw_cell(self.x + xi, self.y + yi, color)
 
 def main():
     pygame.init()
-    cell_screen = CellScreen(60, 40)
+    cell_screen = CellScreen(40, 20)
 
-    organism = Organism(cell_screen, 6, 6)
+    organism = Organism(cell_screen, (2, 2), (6, 6))
     organism.show()
     pygame.display.update()
     time.sleep(2)
