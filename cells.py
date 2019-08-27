@@ -3,8 +3,13 @@ from pygame.locals import *
 
 class CellScreen:
     def __init__(self, width, height):
-        DEFAULT_CELL_WIDTH = 20
-        self.display = pygame.display.set_mode((DEFAULT_CELL_WIDTH * width, DEFAULT_CELL_WIDTH * height), 0, 32)
+        self.DEFAULT_CELL_WIDTH = 20
+        self.display = pygame.display.set_mode((self.DEFAULT_CELL_WIDTH * width, self.DEFAULT_CELL_WIDTH * height), 0, 32)
+
+    def draw_cell(self, x, y, color):
+        x_position = x * self.DEFAULT_CELL_WIDTH + 2 * x
+        y_position = y * self.DEFAULT_CELL_WIDTH + 2 * y
+        pygame.draw.rect(self.display, color, (x_position, y_position, self.DEFAULT_CELL_WIDTH, self.DEFAULT_CELL_WIDTH), 0)
 
 class Organism:
     def __init__(self, cell_screen, width, height):
@@ -13,19 +18,14 @@ class Organism:
         self.height = height
 
     def show(self):
-        DEFAULT_CELL_WIDTH = 20
-
         BLUE = (0, 0, 255)
         YELLOW = (255, 255, 0)
         color_options = [BLUE, YELLOW]
 
         for yi in range(0, self.height):
-            y_position = DEFAULT_CELL_WIDTH * yi + 2 * yi
-
             for xi in range(0, self.width):
                 color = color_options[random.randint(0, 1)]
-                x_position = DEFAULT_CELL_WIDTH * xi + 2 * xi
-                pygame.draw.rect(self.cell_screen.display, color, (x_position, y_position, DEFAULT_CELL_WIDTH, DEFAULT_CELL_WIDTH), 0)
+                self.cell_screen.draw_cell(xi, yi, color)
 
 def main():
     pygame.init()
@@ -33,8 +33,7 @@ def main():
 
     organism = Organism(cell_screen, 6, 6)
     organism.show()
-
     pygame.display.update()
-    time.sleep(3)
+    time.sleep(2)
 
 main()
