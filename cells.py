@@ -29,7 +29,7 @@ def main():
             break
 
     for organism in organisms:
-        organism.show()
+        cell_screen.draw_organism(organism)
 
     poison_count = 5
 

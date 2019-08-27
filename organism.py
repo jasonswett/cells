@@ -20,6 +20,3 @@ class Organism:
                 cell = Cell(x, y, color_options[random.randint(0, 1)])
                 self.cells.append(cell)
 
-    def show(self):
-        for cell in self.cells:
-            self.cell_screen.draw_cell(self.x + cell.x, self.y + cell.y, cell.color)

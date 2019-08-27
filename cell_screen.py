@@ -19,3 +19,7 @@ class CellScreen:
 
     def fits(self, organism_candidate):
         return True
+
+    def draw_organism(self, organism):
+        for cell in organism.cells:
+            self.draw_cell(organism.x + cell.x, organism.y + cell.y, cell.color)
