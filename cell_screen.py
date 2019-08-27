@@ -17,3 +17,5 @@ class CellScreen:
         y_position = y * TOTAL_CELL_WIDTH
         pygame.draw.rect(self.display, color, (x_position, y_position, self.DEFAULT_CELL_WIDTH, self.DEFAULT_CELL_WIDTH), 0)
 
+    def fits(self, organism_candidate):
+        return True

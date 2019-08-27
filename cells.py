@@ -22,8 +22,8 @@ def main():
                 (organism_width, organism_height)
         )
 
-        # only append candidate if it fits
-        organisms.append(organism_candidate)
+        if cell_screen.fits(organism_candidate):
+            organisms.append(organism_candidate)
 
         if len(organisms) >= MAX_ALLOWED_ORGANISMS:
             break

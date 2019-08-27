@@ -1,4 +1,5 @@
 import random
+from cell import Cell
 
 class Organism:
     def __init__(self, cell_screen, position, size):
@@ -12,12 +13,13 @@ class Organism:
         YELLOW = (255, 255, 0)
         color_options = [BLUE, YELLOW]
 
-        self.cell_colors = []
+        self.cells = []
+
         for i in range(0, self.width * self.height):
-            color = color_options[random.randint(0, 1)]
-            self.cell_colors.append(color)
+            cell = Cell(color_options[random.randint(0, 1)])
+            self.cells.append(cell)
 
     def show(self):
         for y in range(0, self.height):
             for x in range(0, self.width):
-                self.cell_screen.draw_cell(self.x + x, self.y + y, self.cell_colors[y + (x * y)])
+                self.cell_screen.draw_cell(self.x + x, self.y + y, self.cells[y + (x * y)].color)
