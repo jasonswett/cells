@@ -42,14 +42,14 @@ class Organism:
 
 def main():
     pygame.init()
-    cell_screen = CellScreen(40, 40)
+    cell_screen = CellScreen(30, 30)
 
     organism_count = 4
     organisms = []
 
     for i in range(0, organism_count):
-        organism_width = random.randint(2, 6)
-        organism_height = random.randint(2, 6)
+        organism_width = 6
+        organism_height = 6
         organism_x = random.randint(0, cell_screen.width - 1 - organism_width)
         organism_y = random.randint(0, cell_screen.height - 1 - organism_height)
         organisms.append(Organism(cell_screen, (organism_x, organism_y), (organism_width, organism_height)))
