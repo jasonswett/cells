@@ -42,12 +42,15 @@ class Organism:
 
 def main():
     pygame.init()
-    cell_screen = CellScreen(40, 20)
+    cell_screen = CellScreen(40, 40)
 
     organism_size = 6
+    organism_count = 4
     organisms = []
 
-    for i in range(0, 3):
+    poison_count = 10
+
+    for i in range(0, organism_count):
         organism_x = random.randint(0, cell_screen.width - 1 - organism_size)
         organism_y = random.randint(0, cell_screen.height - 1 - organism_size)
         organisms.append(Organism(cell_screen, (organism_x, organism_y), (organism_size, organism_size)))
@@ -55,7 +58,7 @@ def main():
     for organism in organisms:
         organism.show()
 
-    for i in range(0, 10):
+    for i in range(0, poison_count):
         poison_x = 0
         poison_y = random.randint(0, cell_screen.height - 1)
         RED = (255, 0, 0)
@@ -64,7 +67,7 @@ def main():
             cell_screen.draw_cell(poison_x, poison_y, RED)
             cell_screen.draw_cell(poison_x - 1, poison_y, (0, 0, 0))
             poison_x += 1
-            time.sleep(0.03)
+            time.sleep(0.01)
 
             pygame.display.update()
 
