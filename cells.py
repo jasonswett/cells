@@ -7,9 +7,11 @@ TOTAL_CELL_WIDTH = DEFAULT_CELL_WIDTH + 2
 class CellScreen:
     def __init__(self, width, height):
         self.DEFAULT_CELL_WIDTH = 20
-        screen_width = TOTAL_CELL_WIDTH * width
-        screen_height = TOTAL_CELL_WIDTH * height
-        self.display = pygame.display.set_mode((screen_width, screen_height), 0, 32)
+        self.width = width
+        self.height = height
+        width_in_pixels = TOTAL_CELL_WIDTH * width
+        height_in_pixels = TOTAL_CELL_WIDTH * height
+        self.display = pygame.display.set_mode((width_in_pixels, height_in_pixels), 0, 32)
 
     def draw_cell(self, x, y, color):
         x_position = x * TOTAL_CELL_WIDTH
@@ -36,19 +38,30 @@ class Organism:
 
 def main():
     pygame.init()
-    screen_width = 40
-    screen_height = 20
-    cell_screen = CellScreen(screen_width, screen_height)
+    cell_screen = CellScreen(40, 20)
 
     organism_size = 6
+    organisms = []
 
     for x in range(0, 3):
-        organism_x = random.randint(0, screen_width - organism_size)
-        organism_y = random.randint(0, screen_height - organism_size)
-        organism = Organism(cell_screen, (organism_x, organism_y), (organism_size, organism_size))
-        organism.show()
+        organism_x = random.randint(0, cell_screen.width - organism_size)
+        organism_y = random.randint(0, cell_screen.height - organism_size)
+        organisms.append(Organism(cell_screen, (organism_x, organism_y), (organism_size, organism_size)))
 
-    pygame.display.update()
-    time.sleep(2)
+    poison_x = 0
+    RED = (255, 0, 0)
+
+    while True:
+        for organism in organisms:
+            organism.show()
+
+        cell_screen.draw_cell(poison_x, 0, RED)
+        poison_x += 1
+        time.sleep(0.1)
+
+        pygame.display.update()
+
+        if poison_x >= cell_screen.width:
+            break
 
 main()
