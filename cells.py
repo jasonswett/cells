@@ -7,15 +7,26 @@ def main():
     pygame.init()
     cell_screen = CellScreen(30, 30)
 
-    organism_count = 4
+    MAX_ALLOWED_ORGANISMS = 4
     organisms = []
 
-    for i in range(0, organism_count):
+    while True:
         organism_width = 6
         organism_height = 6
         organism_x = random.randint(0, cell_screen.width - 1 - organism_width)
         organism_y = random.randint(0, cell_screen.height - 1 - organism_height)
-        organisms.append(Organism(cell_screen, (organism_x, organism_y), (organism_width, organism_height)))
+
+        organism_candidate = Organism(
+                cell_screen,
+                (organism_x, organism_y),
+                (organism_width, organism_height)
+        )
+
+        # only append candidate if it fits
+        organisms.append(organism_candidate)
+
+        if len(organisms) >= MAX_ALLOWED_ORGANISMS:
+            break
 
     for organism in organisms:
         organism.show()
