@@ -44,19 +44,20 @@ def main():
     pygame.init()
     cell_screen = CellScreen(40, 40)
 
-    organism_size = 6
     organism_count = 4
     organisms = []
 
-    poison_count = 10
-
     for i in range(0, organism_count):
-        organism_x = random.randint(0, cell_screen.width - 1 - organism_size)
-        organism_y = random.randint(0, cell_screen.height - 1 - organism_size)
-        organisms.append(Organism(cell_screen, (organism_x, organism_y), (organism_size, organism_size)))
+        organism_width = random.randint(2, 6)
+        organism_height = random.randint(2, 6)
+        organism_x = random.randint(0, cell_screen.width - 1 - organism_width)
+        organism_y = random.randint(0, cell_screen.height - 1 - organism_height)
+        organisms.append(Organism(cell_screen, (organism_x, organism_y), (organism_width, organism_height)))
 
     for organism in organisms:
         organism.show()
+
+    poison_count = 5
 
     for i in range(0, poison_count):
         poison_x = 0
@@ -67,7 +68,7 @@ def main():
             cell_screen.draw_cell(poison_x, poison_y, RED)
             cell_screen.draw_cell(poison_x - 1, poison_y, (0, 0, 0))
             poison_x += 1
-            time.sleep(0.01)
+            time.sleep(0.02)
 
             pygame.display.update()
 
