@@ -52,10 +52,9 @@ def main():
             if not(touched):
                 cell_screen.draw_cell(cell)
 
-            shadow_cell = Cell(cell.x - 1, cell.y, (0, 0, 0))
-            cell_screen.draw_cell(shadow_cell)
+            cell_screen.draw_cell(Cell(cell.previous_x(), cell.y, (0, 0, 0)))
 
-            cell.x += 1
+            cell.advance()
             pygame.display.update()
 
             time.sleep(0.01)
