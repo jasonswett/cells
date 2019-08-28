@@ -44,8 +44,20 @@ class Organism:
                 return True
         return False
 
-    def react_to(self, poison_cell):
+    def react_to(self, foreign_cell):
+        for i, self_cell in enumerate(self.cells):
+            if self_cell.x == foreign_cell.x and self_cell.y == foreign_cell.y:
+                if foreign_cell.poison() and self_cell.hurt_by_poison():
+                    self.cells[i] = BlankCell(foreign_cell.x, foreign_cell.y)
+                    return
+                if foreign_cell.food() and self_cell.helped_by_food():
+                    self.grow()
+                    return
+
+    def grow(self):
         for i, cell in enumerate(self.cells):
-            if cell.x == poison_cell.x and cell.y == poison_cell.y and cell.hurt_by_poison():
-                self.cells[i] = BlankCell(cell.x, cell.y)
+            if cell.blank():
+                self.cells[i] = SoftCell(cell.x, cell.y)
+                self.cell_screen.draw_organisms()
                 return
+                #self.cells.append(SoftCell(self.x - 1, self.y))

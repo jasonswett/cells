@@ -8,3 +8,6 @@ class SoftCell(Cell):
 
     def hurt_by_poison(self):
         return True
+
+    def helped_by_food(self):
+        return True

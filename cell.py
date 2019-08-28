@@ -11,3 +11,15 @@ class Cell:
 
     def blank(self):
         return False
+
+    def poison(self):
+        return False
+
+    def hurt_by_poison(self):
+        return False
+
+    def food(self):
+        return False
+
+    def helped_by_food(self):
+        return False

@@ -5,6 +5,3 @@ class HardCell(Cell):
         self.x = x
         self.y = y
         self.color = (255, 255, 0)
-
-    def hurt_by_poison(self):
-        return False

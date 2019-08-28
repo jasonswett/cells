@@ -23,3 +23,8 @@ class CellScreen:
 
     def random_y(self):
         return random.randint(0, self.height - 1)
+
+    def draw_organisms(self):
+        for organism in self.organisms:
+            self.draw_organism(organism)
+        pygame.display.update()

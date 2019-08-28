@@ -1,6 +1,8 @@
 import pygame, time, random
 from cell_screen import CellScreen
 from cell import Cell
+from food_cell import FoodCell
+from poison_cell import PoisonCell
 from organism import Organism
 from pygame.locals import *
 
@@ -25,40 +27,43 @@ def main():
 
         if not(organism_candidate.conflicts_with_any_of(cell_screen.organisms)):
             cell_screen.organisms.append(organism_candidate)
-            cell_screen.draw_organism(organism_candidate)
-            pygame.display.update()
 
         if len(cell_screen.organisms) >= MAX_ALLOWED_ORGANISMS:
             break
 
-    poison_count = 50
+    cell_screen.draw_organisms()
 
-    for i in range(0, poison_count):
-        poison_cell = Cell(0, cell_screen.random_y(), (255, 0, 0))
+    cell_count = 150
+
+    for i in range(0, cell_count):
+        if random.randint(0, 1) == 0:
+            cell = PoisonCell(0, cell_screen.random_y())
+        else:
+            cell = FoodCell(0, cell_screen.random_y())
 
         while True:
-            touched_by_poison = False
+            touched = False
             for organism in cell_screen.organisms:
-                if organism.is_touched_by(poison_cell):
-                    organism.react_to(poison_cell)
+                if organism.is_touched_by(cell):
+                    organism.react_to(cell)
                     cell_screen.draw_organism(organism)
-                    touched_by_poison = True
+                    touched = True
 
-            if not(touched_by_poison):
-                cell_screen.draw_cell(poison_cell)
+            if not(touched):
+                cell_screen.draw_cell(cell)
 
-            shadow_cell = Cell(poison_cell.x - 1, poison_cell.y, (0, 0, 0))
+            shadow_cell = Cell(cell.x - 1, cell.y, (0, 0, 0))
             cell_screen.draw_cell(shadow_cell)
 
-            poison_cell.x += 1
+            cell.x += 1
             pygame.display.update()
 
             time.sleep(0.01)
 
-            if touched_by_poison:
+            if touched:
                 break
 
-            if poison_cell.x >= cell_screen.width + 1:
+            if cell.x >= cell_screen.width + 1:
                 break
 
 main()
