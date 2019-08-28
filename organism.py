@@ -24,7 +24,6 @@ class Organism:
         for organism in organisms:
             if organism.conflicts_with(self):
                 return True
-
         return False
 
     def conflicts_with(self, organism):
@@ -32,5 +31,10 @@ class Organism:
             for other_cell in organism.cells:
                 if self_cell.occupies_same_space_as(other_cell):
                     return True
+        return False
 
+    def is_touched_by(self, other_cell):
+        for self_cell in self.cells:
+            if self_cell.occupies_same_space_as(other_cell):
+                return True
         return False

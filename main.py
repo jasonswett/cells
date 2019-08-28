@@ -6,9 +6,9 @@ from pygame.locals import *
 
 def main():
     pygame.init()
-    cell_screen = CellScreen(30, 30)
+    cell_screen = CellScreen(20, 20)
 
-    MAX_ALLOWED_ORGANISMS = 4
+    MAX_ALLOWED_ORGANISMS = 3
     organisms = []
 
     while True:
@@ -32,12 +32,17 @@ def main():
     for organism in organisms:
         cell_screen.draw_organism(organism)
 
-    poison_count = 3
+    poison_count = 5
 
     for i in range(0, poison_count):
         poison_cell = Cell(0, cell_screen.random_y(), (255, 0, 0))
 
         while True:
+            touched = False
+            for organism in organisms:
+                if organism.is_touched_by(poison_cell):
+                    touched = True
+
             cell_screen.draw_cell(poison_cell)
 
             shadow_cell = Cell(poison_cell.x - 1, poison_cell.y, (0, 0, 0))
@@ -46,7 +51,10 @@ def main():
             poison_cell.x += 1
             pygame.display.update()
 
-            time.sleep(0.08)
+            time.sleep(0.1)
+
+            if touched:
+                break
 
             if poison_cell.x >= cell_screen.width + 1:
                 break
