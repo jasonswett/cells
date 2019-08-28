@@ -22,7 +22,7 @@ def main():
                 (organism_width, organism_height)
         )
 
-        if cell_screen.fits(organism_candidate):
+        if not(organism_candidate.conflicts_with_any_of(organisms)):
             organisms.append(organism_candidate)
 
         if len(organisms) >= MAX_ALLOWED_ORGANISMS:

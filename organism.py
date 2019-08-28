@@ -19,3 +19,18 @@ class Organism:
             for x in range(0, self.width):
                 cell = Cell(x + self.x, y + self.y, color_options[random.randint(0, 1)])
                 self.cells.append(cell)
+
+    def conflicts_with_any_of(self, organisms):
+        for organism in organisms:
+            if organism.conflicts_with(self):
+                return True
+
+        return False
+
+    def conflicts_with(self, organism):
+        for self_cell in self.cells:
+            for other_cell in organism.cells:
+                if self_cell.x == other_cell.x and self_cell.y == other_cell.y:
+                    return True
+
+        return False

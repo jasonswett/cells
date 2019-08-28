@@ -17,9 +17,6 @@ class CellScreen:
         y_position = y * CELL_WIDTH
         pygame.draw.rect(self.display, color, (x_position, y_position, self.INNER_CELL_WIDTH, self.INNER_CELL_WIDTH), 0)
 
-    def fits(self, organism_candidate):
-        return True
-
     def draw_organism(self, organism):
         for cell in organism.cells:
             self.draw_cell(cell.x, cell.y, cell.color)
