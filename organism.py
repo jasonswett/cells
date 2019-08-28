@@ -30,7 +30,7 @@ class Organism:
     def conflicts_with(self, organism):
         for self_cell in self.cells:
             for other_cell in organism.cells:
-                if self_cell.x == other_cell.x and self_cell.y == other_cell.y:
+                if self_cell.occupies_same_space_as(other_cell):
                     return True
 
         return False
