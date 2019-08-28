@@ -17,6 +17,6 @@ class Organism:
 
         for y in range(0, self.height):
             for x in range(0, self.width):
-                cell = Cell(x, y, color_options[random.randint(0, 1)])
+                cell = Cell(x + self.x, y + self.y, color_options[random.randint(0, 1)])
                 self.cells.append(cell)
 

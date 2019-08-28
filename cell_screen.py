@@ -22,4 +22,4 @@ class CellScreen:
 
     def draw_organism(self, organism):
         for cell in organism.cells:
-            self.draw_cell(organism.x + cell.x, organism.y + cell.y, cell.color)
+            self.draw_cell(cell.x, cell.y, cell.color)
