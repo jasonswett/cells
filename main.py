@@ -40,14 +40,14 @@ def main():
         poison_cell = Cell(0, cell_screen.random_y(), (255, 0, 0))
 
         while True:
-            touched = False
+            touched_by_poison = False
             for organism in organisms:
                 if organism.is_touched_by(poison_cell):
                     organism.react_to(poison_cell)
                     cell_screen.draw_organism(organism)
-                    touched = True
+                    touched_by_poison = True
 
-            if not(touched):
+            if not(touched_by_poison):
                 cell_screen.draw_cell(poison_cell)
 
             shadow_cell = Cell(poison_cell.x - 1, poison_cell.y, (0, 0, 0))
@@ -58,7 +58,7 @@ def main():
 
             time.sleep(0.01)
 
-            if touched:
+            if touched_by_poison:
                 break
 
             if poison_cell.x >= cell_screen.width + 1:
