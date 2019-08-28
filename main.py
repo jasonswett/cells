@@ -1,5 +1,6 @@
 import pygame, time, random
 from cell_screen import CellScreen
+from cell import Cell
 from organism import Organism
 from pygame.locals import *
 
@@ -31,22 +32,23 @@ def main():
     for organism in organisms:
         cell_screen.draw_organism(organism)
 
-    poison_count = 5
+    poison_count = 3
 
     for i in range(0, poison_count):
-        poison_x = 0
-        poison_y = random.randint(0, cell_screen.height - 1)
-        RED = (255, 0, 0)
+        poison_cell = Cell(0, cell_screen.random_y(), (255, 0, 0))
 
         while True:
-            cell_screen.draw_cell(poison_x, poison_y, RED)
-            cell_screen.draw_cell(poison_x - 1, poison_y, (0, 0, 0))
-            poison_x += 1
-            time.sleep(0.02)
+            cell_screen.draw_cell(poison_cell)
 
+            shadow_cell = Cell(poison_cell.x - 1, poison_cell.y, (0, 0, 0))
+            cell_screen.draw_cell(shadow_cell)
+
+            poison_cell.x += 1
             pygame.display.update()
 
-            if poison_x >= cell_screen.width + 1:
+            time.sleep(0.08)
+
+            if poison_cell.x >= cell_screen.width + 1:
                 break
 
 main()
