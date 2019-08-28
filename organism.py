@@ -1,5 +1,8 @@
 import random
 from cell import Cell
+from hard_cell import HardCell
+from soft_cell import SoftCell
+from blank_cell import BlankCell
 
 class Organism:
     def __init__(self, cell_screen, position, size):
@@ -17,8 +20,10 @@ class Organism:
 
         for y in range(0, self.height):
             for x in range(0, self.width):
-                cell = Cell(x + self.x, y + self.y, color_options[random.randint(0, 1)])
-                self.cells.append(cell)
+                if random.randint(0, 1) == 0:
+                    self.cells.append(HardCell(x + self.x, y + self.y))
+                else:
+                    self.cells.append(SoftCell(x + self.x, y + self.y))
 
     def conflicts_with_any_of(self, organisms):
         for organism in organisms:
@@ -38,3 +43,8 @@ class Organism:
             if self_cell.occupies_same_space_as(other_cell):
                 return True
         return False
+
+    def react_to(self, poison_cell):
+        for i, cell in enumerate(self.cells):
+            if cell.x == poison_cell.x and cell.y == poison_cell.y and cell.hurt_by_poison():
+                self.cells[i] = BlankCell(cell.x, cell.y)

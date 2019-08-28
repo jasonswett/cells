@@ -34,7 +34,7 @@ def main():
         cell_screen.draw_organism(organism)
         pygame.display.update()
 
-    poison_count = 5
+    poison_count = 100
 
     for i in range(0, poison_count):
         poison_cell = Cell(0, cell_screen.random_y(), (255, 0, 0))
@@ -43,6 +43,8 @@ def main():
             touched = False
             for organism in organisms:
                 if organism.is_touched_by(poison_cell):
+                    organism.react_to(poison_cell)
+                    cell_screen.draw_organism(organism)
                     touched = True
 
             if not(touched):
@@ -54,7 +56,7 @@ def main():
             poison_cell.x += 1
             pygame.display.update()
 
-            time.sleep(0.05)
+            time.sleep(0.02)
 
             if touched:
                 break
