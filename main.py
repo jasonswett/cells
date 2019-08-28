@@ -9,12 +9,12 @@ def main():
     SCREEN_WIDTH = 30
     cell_screen = CellScreen(int(SCREEN_WIDTH * 1.5), SCREEN_WIDTH)
 
-    MAX_ALLOWED_ORGANISMS = 6
+    MAX_ALLOWED_ORGANISMS = 10
     organisms = []
 
     while True:
-        organism_width = 6
-        organism_height = 6
+        organism_width = 4
+        organism_height = 4
         organism_x = random.randint(0, cell_screen.width - 1 - organism_width)
         organism_y = random.randint(0, cell_screen.height - 1 - organism_height)
 
@@ -34,7 +34,7 @@ def main():
         cell_screen.draw_organism(organism)
         pygame.display.update()
 
-    poison_count = 150
+    poison_count = 100
 
     for i in range(0, poison_count):
         poison_cell = Cell(0, cell_screen.random_y(), (255, 0, 0))

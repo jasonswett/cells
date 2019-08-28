@@ -48,3 +48,4 @@ class Organism:
         for i, cell in enumerate(self.cells):
             if cell.x == poison_cell.x and cell.y == poison_cell.y and cell.hurt_by_poison():
                 self.cells[i] = BlankCell(cell.x, cell.y)
+                return
