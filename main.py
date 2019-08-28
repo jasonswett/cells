@@ -7,7 +7,7 @@ from pygame.locals import *
 def main():
     pygame.init()
     SCREEN_WIDTH = 30
-    cell_screen = CellScreen(SCREEN_WIDTH, SCREEN_WIDTH)
+    cell_screen = CellScreen(int(SCREEN_WIDTH * 1.5), SCREEN_WIDTH)
 
     MAX_ALLOWED_ORGANISMS = 6
     organisms = []
