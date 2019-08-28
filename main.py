@@ -37,9 +37,9 @@ def main():
 
     for i in range(0, cell_count):
         if random.randint(0, 1) == 0:
-            cell = PoisonCell(0, cell_screen.random_y())
+            cell = PoisonCell(cell_screen)
         else:
-            cell = FoodCell(0, cell_screen.random_y())
+            cell = FoodCell(cell_screen)
 
         while True:
             touched = False
@@ -62,7 +62,7 @@ def main():
             if touched:
                 break
 
-            if cell.x >= cell_screen.width + 1:
+            if cell.off_screen():
                 break
 
 main()
