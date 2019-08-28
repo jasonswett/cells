@@ -13,8 +13,8 @@ def main():
     organisms = []
 
     while True:
-        organism_width = 5
-        organism_height = 5
+        organism_width = 6
+        organism_height = 6
         organism_x = random.randint(0, cell_screen.width - 1 - organism_width)
         organism_y = random.randint(0, cell_screen.height - 1 - organism_height)
 
@@ -34,7 +34,7 @@ def main():
         cell_screen.draw_organism(organism)
         pygame.display.update()
 
-    poison_count = 100
+    poison_count = 150
 
     for i in range(0, poison_count):
         poison_cell = Cell(0, cell_screen.random_y(), (255, 0, 0))
@@ -56,7 +56,7 @@ def main():
             poison_cell.x += 1
             pygame.display.update()
 
-            time.sleep(0.02)
+            time.sleep(0.01)
 
             if touched:
                 break
