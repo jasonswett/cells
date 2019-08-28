@@ -67,3 +67,19 @@ class Organism:
                 self.cells[i] = BlankCell(cell.x, cell.y)
                 self.cell_screen.draw_organisms()
                 return
+
+    def check_health(self):
+        if self.mortally_ill():
+            self.die()
+
+    def mortally_ill(self):
+        soft_cell_count = 0
+        for cell in self.cells:
+            if cell.soft():
+                soft_cell_count += 1
+        return soft_cell_count < 4
+
+    def die(self):
+        for i, cell in enumerate(self.cells):
+            self.cells[i] = BlankCell(cell.x, cell.y)
+        self.cell_screen.draw_organisms()

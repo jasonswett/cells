@@ -65,6 +65,9 @@ def main():
                 for organism in cell_screen.organisms:
                     organism.age()
 
+            for organism in cell_screen.organisms:
+                organism.check_health()
+
             if touched:
                 break
 
