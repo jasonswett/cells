@@ -45,7 +45,8 @@ def main():
                 if organism.is_touched_by(poison_cell):
                     touched = True
 
-            cell_screen.draw_cell(poison_cell)
+            if not(touched):
+                cell_screen.draw_cell(poison_cell)
 
             shadow_cell = Cell(poison_cell.x - 1, poison_cell.y, (0, 0, 0))
             cell_screen.draw_cell(shadow_cell)
