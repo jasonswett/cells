@@ -60,4 +60,10 @@ class Organism:
                 self.cells[i] = SoftCell(cell.x, cell.y)
                 self.cell_screen.draw_organisms()
                 return
-                #self.cells.append(SoftCell(self.x - 1, self.y))
+
+    def age(self):
+        for i, cell in enumerate(self.cells):
+            if cell.soft():
+                self.cells[i] = BlankCell(cell.x, cell.y)
+                self.cell_screen.draw_organisms()
+                return

@@ -11,3 +11,6 @@ class SoftCell(Cell):
 
     def helped_by_food(self):
         return True
+
+    def soft(self):
+        return True

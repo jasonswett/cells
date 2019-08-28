@@ -23,3 +23,6 @@ class Cell:
 
     def helped_by_food(self):
         return False
+
+    def soft(self):
+        return False

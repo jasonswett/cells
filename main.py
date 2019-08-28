@@ -34,6 +34,7 @@ def main():
     cell_screen.draw_organisms()
 
     cell_count = 150
+    world_time = 0
 
     for i in range(0, cell_count):
         if random.randint(0, 1) == 0:
@@ -57,7 +58,12 @@ def main():
             cell.advance()
             pygame.display.update()
 
+            world_time += 1
             time.sleep(0.01)
+
+            if world_time % 1000 == 0:
+                for organism in cell_screen.organisms:
+                    organism.age()
 
             if touched:
                 break
