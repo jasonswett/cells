@@ -6,14 +6,15 @@ from pygame.locals import *
 
 def main():
     pygame.init()
-    cell_screen = CellScreen(20, 20)
+    SCREEN_WIDTH = 30
+    cell_screen = CellScreen(SCREEN_WIDTH, SCREEN_WIDTH)
 
-    MAX_ALLOWED_ORGANISMS = 3
+    MAX_ALLOWED_ORGANISMS = 6
     organisms = []
 
     while True:
-        organism_width = 6
-        organism_height = 6
+        organism_width = 5
+        organism_height = 5
         organism_x = random.randint(0, cell_screen.width - 1 - organism_width)
         organism_y = random.randint(0, cell_screen.height - 1 - organism_height)
 
@@ -31,6 +32,7 @@ def main():
 
     for organism in organisms:
         cell_screen.draw_organism(organism)
+        pygame.display.update()
 
     poison_count = 5
 
@@ -51,7 +53,7 @@ def main():
             poison_cell.x += 1
             pygame.display.update()
 
-            time.sleep(0.1)
+            time.sleep(0.05)
 
             if touched:
                 break
