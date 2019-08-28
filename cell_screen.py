@@ -5,7 +5,7 @@ CELL_WIDTH = INNER_CELL_WIDTH + 2
 
 class CellScreen:
     def __init__(self, width, height):
-        self.INNER_CELL_WIDTH = 20
+        self.organisms = []
         self.width = width
         self.height = height
         width_in_pixels = CELL_WIDTH * width
@@ -15,7 +15,7 @@ class CellScreen:
     def draw_cell(self, cell):
         x_position = cell.x * CELL_WIDTH
         y_position = cell.y * CELL_WIDTH
-        pygame.draw.rect(self.display, cell.color, (x_position, y_position, self.INNER_CELL_WIDTH, self.INNER_CELL_WIDTH), 0)
+        pygame.draw.rect(self.display, cell.color, (x_position, y_position, INNER_CELL_WIDTH, INNER_CELL_WIDTH), 0)
 
     def draw_organism(self, organism):
         for cell in organism.cells:

@@ -10,7 +10,6 @@ def main():
     cell_screen = CellScreen(int(SCREEN_WIDTH * 1.5), SCREEN_WIDTH)
 
     MAX_ALLOWED_ORGANISMS = 10
-    organisms = []
 
     while True:
         organism_width = 4
@@ -24,24 +23,22 @@ def main():
                 (organism_width, organism_height)
         )
 
-        if not(organism_candidate.conflicts_with_any_of(organisms)):
-            organisms.append(organism_candidate)
+        if not(organism_candidate.conflicts_with_any_of(cell_screen.organisms)):
+            cell_screen.organisms.append(organism_candidate)
+            cell_screen.draw_organism(organism_candidate)
+            pygame.display.update()
 
-        if len(organisms) >= MAX_ALLOWED_ORGANISMS:
+        if len(cell_screen.organisms) >= MAX_ALLOWED_ORGANISMS:
             break
 
-    for organism in organisms:
-        cell_screen.draw_organism(organism)
-        pygame.display.update()
-
-    poison_count = 100
+    poison_count = 50
 
     for i in range(0, poison_count):
         poison_cell = Cell(0, cell_screen.random_y(), (255, 0, 0))
 
         while True:
             touched_by_poison = False
-            for organism in organisms:
+            for organism in cell_screen.organisms:
                 if organism.is_touched_by(poison_cell):
                     organism.react_to(poison_cell)
                     cell_screen.draw_organism(organism)
