@@ -2,6 +2,7 @@ import random
 from cell import Cell
 from hard_cell import HardCell
 from soft_cell import SoftCell
+from blank_cell import BlankCell
 
 class Organism:
     def __init__(self, cell_screen, position, size):
@@ -46,4 +47,4 @@ class Organism:
     def react_to(self, poison_cell):
         for i, cell in enumerate(self.cells):
             if cell.x == poison_cell.x and cell.y == poison_cell.y and cell.hurt_by_poison():
-                del self.cells[i]
+                self.cells[i] = BlankCell(cell.x, cell.y)
