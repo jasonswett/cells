@@ -5,9 +5,4 @@ class Cell:
         self.color = color
 
     def occupies_same_space_as(self, other_cell):
-        if self.blank() or other_cell.blank():
-            return False
         return self.x == other_cell.x and self.y == other_cell.y
-
-    def blank(self):
-        return False
