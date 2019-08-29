@@ -60,7 +60,7 @@ def main():
             world_time += 1
             time.sleep(0.01)
 
-            if world_time % 400 == 0:
+            if world_time % 500 == 0:
                 for organism in cell_screen.organisms:
                     organism.age()
 
