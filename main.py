@@ -1,4 +1,4 @@
-import pygame, time, random
+import pygame, time, random, sys
 from cell_screen import CellScreen
 from cell import Cell
 from food_cell import FoodCell
@@ -60,12 +60,15 @@ def main():
             world_time += 1
             time.sleep(0.01)
 
-            if world_time % 500 == 0:
+            if world_time % 400 == 0:
                 for organism in cell_screen.organisms:
                     organism.age()
 
             for organism in cell_screen.organisms:
                 organism.check_health()
+
+            if len(cell_screen.organisms) == 0:
+                sys.exit()
 
             if touched:
                 break
