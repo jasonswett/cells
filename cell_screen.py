@@ -28,3 +28,8 @@ class CellScreen:
         for organism in self.organisms:
             self.draw_organism(organism)
         pygame.display.update()
+
+    def remove_organism(self, organism):
+        for i, self_organism in enumerate(self.organisms):
+            if self_organism == organism:
+                del self.organisms[i]

@@ -83,3 +83,4 @@ class Organism:
         for i, cell in enumerate(self.cells):
             self.cells[i] = BlankCell(cell.x, cell.y)
         self.cell_screen.draw_organisms()
+        self.cell_screen.remove_organism(self)
