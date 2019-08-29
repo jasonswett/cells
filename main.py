@@ -33,10 +33,9 @@ def main():
 
     cell_screen.draw_organisms()
 
-    cell_count = 150
     world_time = 0
 
-    for i in range(0, cell_count):
+    while True:
         if random.randint(0, 1) == 0:
             cell = PoisonCell(cell_screen)
         else:
@@ -61,7 +60,7 @@ def main():
             world_time += 1
             time.sleep(0.01)
 
-            if world_time % 1000 == 0:
+            if world_time % 500 == 0:
                 for organism in cell_screen.organisms:
                     organism.age()
 
