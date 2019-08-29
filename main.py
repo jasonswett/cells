@@ -14,8 +14,8 @@ def main():
     MAX_ALLOWED_ORGANISMS = 10
 
     while True:
-        organism_width = 4
-        organism_height = 4
+        organism_width = 6
+        organism_height = 6
         organism_x = random.randint(0, cell_screen.width - 1 - organism_width)
         organism_y = random.randint(0, cell_screen.height - 1 - organism_height)
 

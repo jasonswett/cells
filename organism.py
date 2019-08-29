@@ -77,7 +77,7 @@ class Organism:
         for cell in self.cells:
             if cell.soft():
                 soft_cell_count += 1
-        return soft_cell_count < 4
+        return soft_cell_count < int(len(self.cells) / 4)
 
     def die(self):
         for i, cell in enumerate(self.cells):
