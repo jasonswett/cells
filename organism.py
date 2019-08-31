@@ -17,10 +17,16 @@ class Organism:
         color_options = [BLUE, YELLOW]
 
         self.cells = []
+        self.cell_numbers = []
+
+        total_number_of_cells = self.width * self.height
+
+        for i in range(0, total_number_of_cells):
+            self.cell_numbers.append(random.randint(0, 1))
 
         for y in range(0, self.height):
             for x in range(0, self.width):
-                if random.randint(0, 1) == 0:
+                if self.cell_numbers[x * self.width + y] == 0:
                     self.cells.append(HardCell(x + self.x, y + self.y))
                 else:
                     self.cells.append(SoftCell(x + self.x, y + self.y))
