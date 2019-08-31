@@ -11,7 +11,7 @@ def main():
     SCREEN_WIDTH = 30
     cell_screen = CellScreen(int(SCREEN_WIDTH * 1.5), SCREEN_WIDTH)
 
-    MAX_ALLOWED_ORGANISMS = 10
+    MAX_ALLOWED_ORGANISMS = 6
 
     while True:
         organism_width = 6
