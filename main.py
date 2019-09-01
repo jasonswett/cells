@@ -5,7 +5,7 @@ from cell import Cell
 from food_cell import FoodCell
 from poison_cell import PoisonCell
 from organism import Organism
-from gene import Gene
+from chromosome import Chromosome
 
 def main():
     pygame.init()
@@ -19,16 +19,16 @@ def main():
         organism_height = 6
         organism_x = random.randint(0, cell_screen.width - 1 - organism_width)
         organism_y = random.randint(0, cell_screen.height - 1 - organism_height)
-        gene = Gene((organism_width, organism_height))
+        chromosome = Chromosome((organism_width, organism_height))
 
         organism_candidate = Organism(
                 cell_screen,
                 (organism_x, organism_y),
-                gene
+                chromosome
         )
 
         if not(organism_candidate.conflicts_with_any_of(cell_screen.organisms)):
-            print(gene.dna_string)
+            print(chromosome.dna_string)
             cell_screen.organisms.append(organism_candidate)
 
         if len(cell_screen.organisms) >= MAX_ALLOWED_ORGANISMS:
