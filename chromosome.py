@@ -20,4 +20,9 @@ class Chromosome:
         midway_point = random.randint(0, len(self.dna_string))
         left = self.dna_string[0:midway_point]
         right = other_chromosome.dna_string[midway_point:len(other_chromosome.dna_string)]
-        return Chromosome((self.width, self.height), left + right)
+        dna_string = left + right
+
+        if random.randint(0, 40) == 0:
+            dna_string = dna_string[::-1]
+
+        return Chromosome((self.width, self.height), dna_string)
