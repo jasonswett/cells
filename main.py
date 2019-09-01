@@ -14,25 +14,8 @@ def main():
 
     MAX_ALLOWED_ORGANISMS = 3
 
-    while True:
-        organism_width = 6
-        organism_height = 6
-        organism_x = random.randint(0, cell_screen.width - 1 - organism_width)
-        organism_y = random.randint(0, cell_screen.height - 1 - organism_height)
-        chromosome = Chromosome((organism_width, organism_height))
-
-        organism_candidate = Organism(
-                cell_screen,
-                (organism_x, organism_y),
-                chromosome
-        )
-
-        if not(organism_candidate.conflicts_with_any_of(cell_screen.organisms)):
-            print(chromosome.dna_string)
-            cell_screen.organisms.append(organism_candidate)
-
-        if len(cell_screen.organisms) >= MAX_ALLOWED_ORGANISMS:
-            break
+    for i in range(0, MAX_ALLOWED_ORGANISMS):
+        add_organism(cell_screen)
 
     cell_screen.draw_organisms()
 
@@ -78,5 +61,24 @@ def main():
 
             if cell.off_screen():
                 break
+
+def add_organism(cell_screen):
+    while True:
+        organism_width = 6
+        organism_height = 6
+        organism_x = random.randint(0, cell_screen.width - 1 - organism_width)
+        organism_y = random.randint(0, cell_screen.height - 1 - organism_height)
+        chromosome = Chromosome((organism_width, organism_height))
+
+        organism_candidate = Organism(
+            cell_screen,
+            (organism_x, organism_y),
+            chromosome
+        )
+
+        if not(organism_candidate.conflicts_with_any_of(cell_screen.organisms)):
+            print(chromosome.dna_string)
+            cell_screen.organisms.append(organism_candidate)
+            return
 
 main()
