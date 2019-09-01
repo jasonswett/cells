@@ -64,11 +64,19 @@ class Organism:
                 return
 
     def age(self):
+        number_of_killed_cells = 0
+
         for i, cell in enumerate(self.cells):
             if cell.soft():
                 self.cells[i] = BlankCell(cell.x, cell.y)
-                self.cell_screen.draw_organisms()
-                return
+                number_of_killed_cells += 1
+
+                if number_of_killed_cells >= int(self.total_number_of_cells() * .05):
+                    self.cell_screen.draw_organisms()
+                    return
+
+    def total_number_of_cells(self):
+        return self.width * self.height
 
     def check_health(self):
         if self.mortally_ill():
