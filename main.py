@@ -19,7 +19,6 @@ def main():
     for i in range(0, MAX_ALLOWED_ORGANISMS):
         add_organism(cell_screen, Chromosome((ORGANISM_WIDTH, ORGANISM_HEIGHT), ''))
 
-    print('-')
     cell_screen.draw_organisms()
 
     world_time = 0
