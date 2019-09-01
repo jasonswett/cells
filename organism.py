@@ -3,6 +3,7 @@ from cell import Cell
 from hard_cell import HardCell
 from soft_cell import SoftCell
 from blank_cell import BlankCell
+from gene import Gene
 
 class Organism:
     def __init__(self, cell_screen, position, size):
@@ -16,20 +17,12 @@ class Organism:
         YELLOW = (255, 255, 0)
         color_options = [BLUE, YELLOW]
 
+        gene = Gene(size)
         self.cells = []
-
-        total_number_of_cells = self.width * self.height
-        self.dna_string = ''
-        CHROMOSOME_LENGTH = 2
-
-        for i in range(0, total_number_of_cells):
-            chromosome = '0' + str(random.randint(0, 1))
-            self.dna_string += chromosome
 
         for y in range(0, self.height):
             for x in range(0, self.width):
-                position_for_cell = (x * self.width + y) * CHROMOSOME_LENGTH
-                if self.dna_string[position_for_cell:position_for_cell + CHROMOSOME_LENGTH] == '00':
+                if gene.at(x, y) == '00':
                     self.cells.append(HardCell(x + self.x, y + self.y))
                 else:
                     self.cells.append(SoftCell(x + self.x, y + self.y))
