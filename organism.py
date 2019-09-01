@@ -6,18 +6,17 @@ from blank_cell import BlankCell
 from gene import Gene
 
 class Organism:
-    def __init__(self, cell_screen, position, size):
+    def __init__(self, cell_screen, position, gene):
         self.cell_screen = cell_screen
         self.x = position[0]
         self.y = position[1]
-        self.width = size[0]
-        self.height = size[1]
+        self.width = gene.width
+        self.height = gene.height
 
         BLUE = (0, 0, 255)
         YELLOW = (255, 255, 0)
         color_options = [BLUE, YELLOW]
 
-        gene = Gene(size)
         self.cells = []
 
         for y in range(0, self.height):
