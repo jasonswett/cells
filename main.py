@@ -12,7 +12,7 @@ def main():
     SCREEN_WIDTH = 30
     cell_screen = CellScreen(int(SCREEN_WIDTH * 1.5), SCREEN_WIDTH)
 
-    MAX_ALLOWED_ORGANISMS = 4
+    MAX_ALLOWED_ORGANISMS = 8
     ORGANISM_WIDTH = 6
     ORGANISM_HEIGHT = 6
 
@@ -63,7 +63,7 @@ def main():
                     for organism in cell_screen.organisms:
                         parents.append(organism)
 
-                for i in range(0, 3):
+                for i in range(0, MAX_ALLOWED_ORGANISMS):
                     add_organism(cell_screen, parents[0].chromosome.offspring_with(parents[1].chromosome))
 
             if touched:

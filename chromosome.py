@@ -17,7 +17,7 @@ class Chromosome:
         return self.dna_string[position_for_cell:position_for_cell + self.GENE_LENGTH]
 
     def offspring_with(self, other_chromosome):
-        halfway_point = int(len(self.dna_string) / 2)
-        left = self.dna_string[0:halfway_point]
-        right = other_chromosome.dna_string[halfway_point:len(other_chromosome.dna_string)]
+        midway_point = random.randint(0, len(self.dna_string))
+        left = self.dna_string[0:midway_point]
+        right = other_chromosome.dna_string[midway_point:len(other_chromosome.dna_string)]
         return Chromosome((self.width, self.height), left + right)
