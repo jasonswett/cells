@@ -12,7 +12,7 @@ def main():
     SCREEN_WIDTH = 30
     cell_screen = CellScreen(int(SCREEN_WIDTH * 1.5), SCREEN_WIDTH)
 
-    MAX_ALLOWED_ORGANISMS = 6
+    MAX_ALLOWED_ORGANISMS = 3
 
     while True:
         organism_width = 6
@@ -63,7 +63,7 @@ def main():
             world_time += 1
             time.sleep(0.01)
 
-            if world_time % 500 == 0:
+            if world_time % 300 == 0:
                 for organism in cell_screen.organisms:
                     organism.age()
 
