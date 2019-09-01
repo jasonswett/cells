@@ -17,7 +17,6 @@ class Organism:
         color_options = [BLUE, YELLOW]
 
         self.cells = []
-        self.cell_numbers = []
 
         total_number_of_cells = self.width * self.height
         self.dna_string = ''
@@ -25,7 +24,6 @@ class Organism:
 
         for i in range(0, total_number_of_cells):
             chromosome = '0' + str(random.randint(0, 1))
-            self.cell_numbers.append(chromosome)
             self.dna_string += chromosome
 
         for y in range(0, self.height):
