@@ -22,10 +22,15 @@ class Organism:
 
         for y in range(0, self.height):
             for x in range(0, self.width):
-                if self.chromosome.at(x, y) == '00':
+                gene = self.chromosome.at(x, y)
+                if gene == '00':
                     self.cells.append(HardCell(x + self.x, y + self.y))
-                else:
+                elif gene == '01':
                     self.cells.append(SoftCell(x + self.x, y + self.y))
+                elif gene == '10':
+                    self.cells.append(SoftCell(x + self.x, y + self.y))
+                elif gene == '11':
+                    self.cells.append(BlankCell(x + self.x, y + self.y))
 
     def conflicts_with_any_of(self, organisms):
         for organism in organisms:
