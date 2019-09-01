@@ -12,11 +12,14 @@ def main():
     SCREEN_WIDTH = 30
     cell_screen = CellScreen(int(SCREEN_WIDTH * 1.5), SCREEN_WIDTH)
 
-    MAX_ALLOWED_ORGANISMS = 3
+    MAX_ALLOWED_ORGANISMS = 4
+    ORGANISM_WIDTH = 6
+    ORGANISM_HEIGHT = 6
 
     for i in range(0, MAX_ALLOWED_ORGANISMS):
-        add_organism(cell_screen)
+        add_organism(cell_screen, Chromosome((ORGANISM_WIDTH, ORGANISM_HEIGHT), ''))
 
+    print('-')
     cell_screen.draw_organisms()
 
     world_time = 0
@@ -44,17 +47,24 @@ def main():
             pygame.display.update()
 
             world_time += 1
-            time.sleep(0.01)
+            time.sleep(0.005)
 
-            if world_time % 300 == 0:
+            if world_time % 100 == 0:
                 for organism in cell_screen.organisms:
                     organism.age()
 
             for organism in cell_screen.organisms:
                 organism.check_health()
 
-            if len(cell_screen.organisms) == 0:
-                sys.exit()
+            if len(cell_screen.organisms) <= 2:
+                parents = []
+
+                for i in range(0, 2):
+                    for organism in cell_screen.organisms:
+                        parents.append(organism)
+
+                for i in range(0, 3):
+                    add_organism(cell_screen, parents[0].chromosome.offspring_with(parents[1].chromosome))
 
             if touched:
                 break
@@ -62,13 +72,10 @@ def main():
             if cell.off_screen():
                 break
 
-def add_organism(cell_screen):
+def add_organism(cell_screen, chromosome):
     while True:
-        organism_width = 6
-        organism_height = 6
-        organism_x = random.randint(0, cell_screen.width - 1 - organism_width)
-        organism_y = random.randint(0, cell_screen.height - 1 - organism_height)
-        chromosome = Chromosome((organism_width, organism_height))
+        organism_x = random.randint(0, cell_screen.width - 1 - chromosome.width)
+        organism_y = random.randint(0, cell_screen.height - 1 - chromosome.height)
 
         organism_candidate = Organism(
             cell_screen,
