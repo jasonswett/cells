@@ -22,7 +22,18 @@ class Chromosome:
         right = other_chromosome.dna_string[midway_point:len(other_chromosome.dna_string)]
         dna_string = left + right
 
-        if random.randint(0, 40) == 0:
-            dna_string = dna_string[::-1]
+        if random.randint(0, 2) == 0:
+            dna_string = self.mutated_dna_string(dna_string)
 
         return Chromosome((self.width, self.height), dna_string)
+
+    def mutated_dna_string(self, dna_string):
+        bit_index_to_mutate = random.randint(0, len(self.dna_string))
+        print(bit_index_to_mutate)
+
+        if dna_string[bit_index_to_mutate] == '0':
+            new_character = '1'
+        else:
+            new_character = '0'
+
+        return dna_string[0:bit_index_to_mutate - 1] + new_character + dna_string[bit_index_to_mutate:len(dna_string)]

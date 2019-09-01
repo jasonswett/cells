@@ -9,12 +9,12 @@ from chromosome import Chromosome
 
 def main():
     pygame.init()
-    SCREEN_WIDTH = 30
+    SCREEN_WIDTH = 40
     cell_screen = CellScreen(int(SCREEN_WIDTH * 1.5), SCREEN_WIDTH)
 
-    MAX_ALLOWED_ORGANISMS = 8
-    ORGANISM_WIDTH = 6
-    ORGANISM_HEIGHT = 6
+    MAX_ALLOWED_ORGANISMS = 6
+    ORGANISM_WIDTH = 8
+    ORGANISM_HEIGHT = 8
 
     for i in range(0, MAX_ALLOWED_ORGANISMS):
         add_organism(cell_screen, Chromosome((ORGANISM_WIDTH, ORGANISM_HEIGHT), ''))
@@ -46,9 +46,9 @@ def main():
             pygame.display.update()
 
             world_time += 1
-            time.sleep(0.005)
+            time.sleep(0.001)
 
-            if world_time % 100 == 0:
+            if world_time % 200 == 0:
                 for organism in cell_screen.organisms:
                     organism.age()
 

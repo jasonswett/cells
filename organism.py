@@ -71,7 +71,7 @@ class Organism:
                 self.cells[i] = BlankCell(cell.x, cell.y)
                 number_of_killed_cells += 1
 
-                if number_of_killed_cells >= int(self.total_number_of_cells() * .05):
+                if number_of_killed_cells >= int(self.total_number_of_cells() * .01):
                     self.cell_screen.draw_organisms()
                     return
 
