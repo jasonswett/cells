@@ -20,18 +20,17 @@ class Organism:
         self.cell_numbers = []
 
         total_number_of_cells = self.width * self.height
-        dna_string = ''
+        self.dna_string = ''
 
         for i in range(0, total_number_of_cells):
             chromosome = '0' + str(random.randint(0, 1))
             self.cell_numbers.append(chromosome)
-            dna_string += chromosome
-
-        print(dna_string)
+            self.dna_string += chromosome
 
         for y in range(0, self.height):
             for x in range(0, self.width):
-                if self.cell_numbers[x * self.width + y] == '00':
+                position_for_cell = (x * self.width + y) * 2
+                if self.dna_string[position_for_cell:position_for_cell + 2] == '00':
                     self.cells.append(HardCell(x + self.x, y + self.y))
                 else:
                     self.cells.append(SoftCell(x + self.x, y + self.y))
