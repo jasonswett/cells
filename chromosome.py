@@ -1,16 +1,18 @@
 import random
 
 class Chromosome:
-    def __init__(self, size, dna_string):
+    def __init__(self, width, length, dna_string):
         self.GENE_LENGTH = 2
-        self.width = size[0]
-        self.height = size[1]
-
+        self.width = width
+        self.length = length
         self.dna_string = dna_string
 
         if self.dna_string == '':
-            for i in range(0, self.width * self.height):
+            for i in range(0, self.width * self.height()):
                 self.dna_string += '0' + str(random.randint(0, 1))
+
+    def height(self):
+        return int(self.length / self.width)
 
     def at(self, x, y):
         position_for_cell = (x * self.width + y) * self.GENE_LENGTH
@@ -25,7 +27,7 @@ class Chromosome:
         if random.randint(0, 1) == 0:
             dna_string = self.mutated_dna_string(dna_string)
 
-        return Chromosome((self.width, self.height), dna_string)
+        return Chromosome(self.width, self.length, dna_string)
 
     def mutated_dna_string(self, dna_string):
         new_dna_string = dna_string

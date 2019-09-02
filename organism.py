@@ -12,7 +12,7 @@ class Organism:
         self.y = position[1]
         self.chromosome = chromosome
         self.width = self.chromosome.width
-        self.height = self.chromosome.height
+        self.height = self.chromosome.height()
 
         BLUE = (0, 0, 255)
         YELLOW = (255, 255, 0)
@@ -20,8 +20,8 @@ class Organism:
 
         self.cells = []
 
-        for y in range(0, self.height):
-            for x in range(0, self.width):
+        for x in range(0, self.width):
+            for y in range(0, self.height):
                 gene = self.chromosome.at(x, y)
                 if gene == '00':
                     self.cells.append(HardCell(x + self.x, y + self.y))

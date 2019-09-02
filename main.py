@@ -9,15 +9,15 @@ from chromosome import Chromosome
 
 def main():
     pygame.init()
-    SCREEN_WIDTH = 80
+    SCREEN_WIDTH = 40
     cell_screen = CellScreen(int(SCREEN_WIDTH * 1.5), SCREEN_WIDTH)
 
-    MAX_ALLOWED_ORGANISMS = 20
-    ORGANISM_WIDTH = 10
-    ORGANISM_HEIGHT = 10
+    MAX_ALLOWED_ORGANISMS = 5
+    ORGANISM_WIDTH = 6
+    CHROMOSOME_LENGTH = 36
 
     for i in range(0, MAX_ALLOWED_ORGANISMS):
-        add_organism(cell_screen, Chromosome((ORGANISM_WIDTH, ORGANISM_HEIGHT), ''))
+        add_organism(cell_screen, Chromosome(ORGANISM_WIDTH, CHROMOSOME_LENGTH, ''))
 
     cell_screen.draw_organisms()
 
@@ -74,7 +74,7 @@ def main():
 def add_organism(cell_screen, chromosome):
     while True:
         organism_x = random.randint(0, cell_screen.width - 1 - chromosome.width)
-        organism_y = random.randint(0, cell_screen.height - 1 - chromosome.height)
+        organism_y = random.randint(0, cell_screen.height - 1 - chromosome.height())
 
         organism_candidate = Organism(
             cell_screen,
