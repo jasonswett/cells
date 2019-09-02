@@ -25,10 +25,10 @@ def main():
     world_time = 0
 
     while True:
-        if random.randint(0, 1) == 0:
-            cell = PoisonCell(cell_screen)
-        else:
+        if random.randint(0, 4) == 0:
             cell = FoodCell(cell_screen)
+        else:
+            cell = PoisonCell(cell_screen)
 
         while True:
             touched = False
