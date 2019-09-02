@@ -12,7 +12,8 @@ def main():
     SCREEN_WIDTH = 40
     cell_screen = CellScreen(int(SCREEN_WIDTH * 1.5), SCREEN_WIDTH)
 
-    MAX_ALLOWED_ORGANISMS = 5
+    MAX_ALLOWED_ORGANISMS = 6
+    MIN_ALLOWED_ORGANISMS = 2
     ORGANISM_WIDTH = 6
     CHROMOSOME_LENGTH = 36
 
@@ -55,14 +56,14 @@ def main():
             for organism in cell_screen.organisms:
                 organism.check_health()
 
-            if len(cell_screen.organisms) <= 2:
+            if len(cell_screen.organisms) <= MIN_ALLOWED_ORGANISMS:
                 parents = []
 
-                for i in range(0, 2):
+                for i in range(0, MIN_ALLOWED_ORGANISMS):
                     for organism in cell_screen.organisms:
                         parents.append(organism)
 
-                for i in range(0, MAX_ALLOWED_ORGANISMS):
+                for i in range(0, MAX_ALLOWED_ORGANISMS - MIN_ALLOWED_ORGANISMS):
                     add_organism(cell_screen, parents[0].chromosome.offspring_with(parents[1].chromosome))
 
             if touched:
@@ -75,15 +76,9 @@ def add_organism(cell_screen, chromosome):
     while True:
         organism_x = random.randint(0, cell_screen.width - 1 - chromosome.width)
         organism_y = random.randint(0, cell_screen.height - 1 - chromosome.height())
-
-        organism_candidate = Organism(
-            cell_screen,
-            (organism_x, organism_y),
-            chromosome
-        )
+        organism_candidate = Organism(cell_screen, (organism_x, organism_y), chromosome)
 
         if not(organism_candidate.conflicts_with_any_of(cell_screen.organisms)):
-            print(chromosome.dna_string)
             cell_screen.organisms.append(organism_candidate)
             return
 
