@@ -12,8 +12,8 @@ def main():
     SCREEN_WIDTH = 40
     cell_screen = CellScreen(int(SCREEN_WIDTH * 1.5), SCREEN_WIDTH)
 
-    MAX_ALLOWED_ORGANISMS = 6
-    MIN_ALLOWED_ORGANISMS = 2
+    MAX_ALLOWED_ORGANISMS = 10
+    MIN_ALLOWED_ORGANISMS = 4
     ORGANISM_WIDTH = 6
     CHROMOSOME_LENGTH = 36
 
@@ -47,7 +47,7 @@ def main():
             pygame.display.update()
 
             world_time += 1
-            #time.sleep(0.0001)
+            time.sleep(0.001)
 
             if world_time % 500 == 0:
                 for organism in cell_screen.organisms:
@@ -63,7 +63,7 @@ def main():
                     for organism in cell_screen.organisms:
                         parents.append(organism)
 
-                for i in range(0, MAX_ALLOWED_ORGANISMS - MIN_ALLOWED_ORGANISMS):
+                while len(cell_screen.organisms) < MAX_ALLOWED_ORGANISMS:
                     add_organism(cell_screen, parents[0].chromosome.offspring_with(parents[1].chromosome))
 
             if touched:
